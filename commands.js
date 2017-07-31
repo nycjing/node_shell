@@ -27,10 +27,19 @@ module.exports = {
     },
 
     cat: function (filename) {
-        fs.readFile(filename, function(err, data) {
-            // if (err) throw err;
-            console.log(data);
+        var fullName = `${process.cwd()}/`+filename;
+        fs.readFile(fullName.trim(), function (err, data) {
+            if (err) throw err;
+            process.stdout.write(data + '\nprompt>');
         });
+    },
 
+    head: function(filename){
+        var fullName = `${process.cwd()}/`+filename;
+        fs.readFile(fullName.trim(), function (err, data) {
+            if (err) throw err;
+            var fileOutput = data.toString().split('\n').slice(0,5).join('\n');
+            process.stdout.write(fileOutput + '\nprompt>');
+        });
     }
 };
