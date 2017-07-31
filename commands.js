@@ -19,5 +19,10 @@ module.exports = {
             })
             process.stdout.write("prompt > ");
         });
+    },
+
+    echo: function(arg){
+        process.stdout.write(arg + '\n');
+        process.stdout.write('\nprompt>');
     }
 };

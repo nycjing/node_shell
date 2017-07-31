@@ -4,8 +4,14 @@ var commands = require('./commands');
 process.stdout.write('prompt > ');
 
 process.stdin.on('data', function(data){
-    var cmd = data.toString().trim();
-    commands[cmd]();
+    var cmdArray = data.toString().split(' ');
+    var cmd = cmdArray[0];
+    if (cmdArray.length > 1){
+        var parameterArray = cmdArray.split(1).join(' ');
+        commands[cmd](parameterArray);
+    } else {
+        commands[cmd]();
+    }
 
 });
 
