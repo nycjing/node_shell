@@ -1,14 +1,16 @@
 // console.log(Object.keys(process));
 process.stdout.write('prompt > ');
-console.log(process.argv)
 process.stdin.on('data', function(data){
     var cmd = data.toString().trim();
-    console.log(process.argv)
-
-    process.stdout.write('you typed: ' +cmd)
+        process.stdout.write('you typed: ' +cmd + '\n')
+    if (cmd === 'pwd') {
+        process.stdout.write(`Current directory: ${process.cwd()}`+'\n');
+    }
+    if (cmd === 'date') {
+        process.stdout.write(Date()+'\n');
+    }
 
     process.stdout.write('\nprompt>');
 
-    process.stdout.write(process.argv[2]);
 });
 
