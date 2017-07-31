@@ -1,4 +1,5 @@
 var fs = require('fs');
+var request = require('request');
 
 module.exports = {
     pwd: function () {
@@ -41,5 +42,23 @@ module.exports = {
             var fileOutput = data.toString().split('\n').slice(0,5).join('\n');
             process.stdout.write(fileOutput + '\nprompt>');
         });
+    },
+
+    tail: function(filename){
+        var fullName = `${process.cwd()}/`+filename;
+        fs.readFile(fullName.trim(), function (err, data) {
+            if (err) throw err;
+            var fileOutput = data.toString().split('\n').slice(-5).join('\n');
+            process.stdout.write(fileOutput + '\nprompt>');
+        });
+    },
+
+    curl: function(link){
+
+        request(link, function(err, im, body){
+            if (err) throw err;
+            process.stdout.write(body + '\nprompt>');
+        });
+
     }
 };
