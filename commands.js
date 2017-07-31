@@ -24,5 +24,13 @@ module.exports = {
     echo: function(arg){
         process.stdout.write(arg + '\n');
         process.stdout.write('\nprompt>');
+    },
+
+    cat: function (filename) {
+        fs.readFile(filename, function(err, data) {
+            // if (err) throw err;
+            console.log(data);
+        });
+
     }
 };

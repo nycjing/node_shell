@@ -3,12 +3,13 @@ var commands = require('./commands');
 //var userCommand = 'pwd';
 process.stdout.write('prompt > ');
 
-process.stdin.on('data', function(data){
+process.stdin.on('data', function (data) {
+
     var cmdArray = data.toString().split(' ');
-    var cmd = cmdArray[0];
-    if (cmdArray.length > 1){
-        var parameterArray = cmdArray.split(1).join(' ');
-        commands[cmd](parameterArray);
+    var cmd = cmdArray[0].toString().trim();
+    if (cmdArray.length > 1) {
+        var parameter = cmdArray.slice(1).join(' ');
+        commands[cmd](parameter);
     } else {
         commands[cmd]();
     }
